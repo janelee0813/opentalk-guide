@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>오픈채팅 모임 안내 · 처음 오신 분들을 위한 가이드</title>
+<meta name="description" content="카카오톡 오픈채팅 커뮤니티에 처음 오신 분들을 위한 온보딩 가이드. 닉네임 설정, 벙 참여, 정산 규칙까지 한 페이지로 빠르게 확인하세요." />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Pretendard Variable','Pretendard','-apple-system','BlinkMacSystemFont','Apple SD Gothic Neo','Segoe UI','Roboto','sans-serif']
+        },
+        colors: {
+          background: '#0a0612',
+          surface: '#15101f',
+          'surface-elevated': '#1c1530',
+          foreground: '#f5f1ff',
+          muted: '#1a1428',
+          'muted-foreground': '#9b94b3',
+          border: 'rgba(140,110,200,0.22)',
+          'neon-purple': '#b566ff',
+          'neon-pink': '#ff5fb0',
+          'neon-blue': '#5ec8ff',
+          warning: '#ffb547',
+          success: '#5ee0a8',
+          destructive: '#ff5f6d',
+        },
+        boxShadow: {
+          'glow-purple': '0 0 30px -5px #b566ff',
+          'glow-pink': '0 0 30px -5px #ff5fb0',
+          'glow-blue': '0 0 30px -5px #5ec8ff',
+        },
+        animation: {
+          'fade-up': 'fade-up 0.7s cubic-bezier(0.22,1,0.36,1) both',
+          'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
+          'shimmer': 'shimmer 6s linear infinite',
+        },
+        keyframes: {
+          'fade-up': { '0%': { opacity: 0, transform: 'translateY(24px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+          'glow-pulse': { '0%,100%': { boxShadow: '0 0 20px -8px rgba(181,102,255,0.5)' }, '50%': { boxShadow: '0 0 35px -4px rgba(181,102,255,0.85)' } },
+          'shimmer': { '0%': { backgroundPosition: '0% 50%' }, '100%': { backgroundPosition: '200% 50%' } },
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; background:#0a0612; color-scheme: dark; }
+  body { background:#0a0612; color:#f5f1ff; font-family:'Pretendard Variable','Pretendard',-apple-system,sans-serif; -webkit-font-smoothing:antialiased; }
+  ::selection { background: rgba(181,102,255,0.35); }
+
+  .text-gradient-neon{
+    background: linear-gradient(100deg,#b566ff 0%,#ff5fb0 50%,#5ec8ff 100%);
+    background-size:200% auto;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation: shimmer 6s linear infinite;
+  }
+  .neon-card{
+    position:relative;
+    background: linear-gradient(180deg, rgba(28,21,48,0.85), rgba(21,16,31,0.7));
+    border:1px solid rgba(140,110,200,0.28);
+    backdrop-filter: blur(8px);
+    border-radius: 1rem;
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .neon-card:hover{ transform: translateY(-2px); box-shadow: 0 10px 40px -15px rgba(181,102,255,0.5); }
+  .neon-card-glow::before{
+    content:""; position:absolute; inset:-1px; border-radius:inherit; padding:1px;
+    background: linear-gradient(135deg, rgba(181,102,255,0.7), rgba(255,95,176,0.4), rgba(94,200,255,0.6));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; pointer-events:none;
+  }
+  .grid-bg{
+    background-image:
+      radial-gradient(circle at 20% 0%, rgba(181,102,255,0.18), transparent 45%),
+      radial-gradient(circle at 80% 10%, rgba(255,95,176,0.14), transparent 50%),
+      radial-gradient(circle at 50% 100%, rgba(94,200,255,0.12), transparent 55%);
+  }
+  .divider-neon{
+    height:1px;
+    background: linear-gradient(90deg, transparent, rgba(181,102,255,0.6), rgba(255,95,176,0.5), transparent);
+  }
+</style>
+</head>
+<body id="top" class="min-h-screen bg-background text-foreground font-sans">
+
+<!-- Scroll progress -->
+<div class="fixed inset-x-0 top-0 z-50 h-[2px]">
+  <div id="scrollbar" class="h-full w-0 bg-gradient-to-r from-neon-purple via-neon-pink to-neon-blue shadow-[0_0_10px_#b566ff] transition-[width] duration-150"></div>
+</div>
+
+<!-- HERO -->
+<section class="relative overflow-hidden">
+  <div class="grid-bg absolute inset-0 -z-10"></div>
+  <div class="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-neon-purple/60 to-transparent"></div>
+  <div class="mx-auto max-w-screen-md px-5 pt-16 pb-12 sm:pt-24 sm:pb-20">
+    <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface/70 px-3 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur animate-fade-up">
+      <svg class="h-3.5 w-3.5 text-neon-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span>오픈채팅 모임 안내</span>
+      <span class="mx-1 h-1 w-1 rounded-full bg-border"></span>
+      <span class="text-neon-blue">v1.0</span>
+    </div>
+    <h1 class="text-[34px] font-bold leading-[1.15] tracking-tight sm:text-5xl md:text-6xl animate-fade-up" style="animation-delay:60ms">
+      처음 오신 분들을 위한<br/>
+      <span class="text-gradient-neon">모임 안내</span>
+    </h1>
+    <p class="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg animate-fade-up" style="animation-delay:140ms">
+      꼭 필요한 내용부터 빠르게 확인하고<br class="sm:hidden"/> 편하게 참여하세요.
+    </p>
+
+    <div class="neon-card neon-card-glow mt-8 p-5 sm:p-6 animate-fade-up animate-glow-pulse" style="animation-delay:220ms,1.2s">
+      <div class="mb-4 flex items-center justify-between">
+        <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-neon-purple">핵심 요약</span>
+        <span class="rounded-full bg-neon-purple/15 px-2.5 py-0.5 text-[10px] font-medium text-neon-purple">5초 가이드</span>
+      </div>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3"><span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-neon-purple to-neon-pink text-[10px] font-bold text-background">1</span><span class="text-sm leading-relaxed text-foreground/90">닉네임 먼저 설정해주세요</span></li>
+<li class="flex items-start gap-3"><span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-neon-purple to-neon-pink text-[10px] font-bold text-background">2</span><span class="text-sm leading-relaxed text-foreground/90">신입은 1개월 내 벙 1회 참여가 필요해요</span></li>
+<li class="flex items-start gap-3"><span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-neon-purple to-neon-pink text-[10px] font-bold text-background">3</span><span class="text-sm leading-relaxed text-foreground/90">벙 참여 시 참석 버튼은 꼭 눌러주세요</span></li>
+<li class="flex items-start gap-3"><span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-neon-purple to-neon-pink text-[10px] font-bold text-background">4</span><span class="text-sm leading-relaxed text-foreground/90">비공식 모임 언급은 금지예요</span></li>
+<li class="flex items-start gap-3"><span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-neon-purple to-neon-pink text-[10px] font-bold text-background">5</span><span class="text-sm leading-relaxed text-foreground/90">문제가 생기면 운영진에게 1:1로 알려주세요</span></li>
+      </ul>
+    </div>
+
+    <div class="mt-10 flex items-center gap-4 animate-fade-up" style="animation-delay:320ms">
+      <a href="#onboarding" class="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-neon-purple via-neon-pink to-neon-blue px-5 py-3 text-sm font-semibold text-background shadow-[0_10px_40px_-10px_rgba(181,102,255,0.7)] transition-transform hover:scale-[1.02]">
+        지금 바로 시작하기
+        <svg class="h-4 w-4 transition-transform group-hover:translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+      </a>
+      <div class="flex items-center gap-1.5 text-xs text-muted-foreground">
+        <svg class="h-3.5 w-3.5 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+        <span>약 2분 소요</span>
+      </div>
+    </div>
+  </div>
+  <div class="divider-neon mx-auto max-w-screen-md"></div>
+</section>
+
+
+<section id="onboarding" class="px-5 py-16 sm:py-20">
+  <div class="mx-auto max-w-screen-md">
+    
+    <div class="mb-8">
+      <div class="mb-3 flex justify-start">
+        <span class="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-[11px] font-medium tracking-[0.18em] text-neon-purple uppercase">
+          <span class="h-1.5 w-1.5 rounded-full bg-neon-purple shadow-[0_0_8px_#b566ff]"></span>
+          Step 01
+        </span>
+      </div>
+      <h2 class="text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl md:text-4xl">입장 후 가장 먼저 해주세요</h2>
+      <p class="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">아래 4가지만 챙기면 첫 시작은 충분해요.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      
+    <div class="neon-card neon-card-glow p-5 sm:p-6">
+      <div class="mb-4 flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-neon-purple/30 to-neon-pink/20 text-neon-purple ring-1 ring-neon-purple/30">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h3 class="text-base font-semibold text-foreground sm:text-lg">닉네임 설정</h3>
+      </div>
+      <ul class="space-y-2.5"><li class="flex items-start gap-2.5 text-[13.5px] leading-relaxed text-foreground/85 sm:text-sm"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-neon-pink"></span><span>형식: 닉네임 / 지역 / 성별 / 출생년도 / 입장일</span></li><li class="flex items-start gap-2.5 text-[13.5px] leading-relaxed text-foreground/85 sm:text-sm"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-neon-pink"></span><span>예시: 엑서 논현 남 88 0125</span></li><li class="flex items-start gap-2.5 text-[13.5px] leading-relaxed text-foreground/85 sm:text-sm"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-neon-pink"></span><span>입장 후 닉네임 변경은 1회 가능</span></li><li class="flex items-start gap-2.5 text-[13.5px] leading-relaxed text-foreground/85 sm:text-sm"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-neon-pink"></span><span>변경 시 운영진 3명 태그가 필요해요</span></li></ul>
+    </div>
+    
+    <div class="neon-card neon-card-glow p-5 sm:p-6">
+      <div class="mb-4 flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-neon-purple/30 to-neon-pink/20 text-neon-pink ring-1 ring-neon-pink/30">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h3 class="text-base font-semibold text-foreground sm:text-lg">신입 필수 참여</h3>
+      </div>
+      <ul class="space-y-2.5"><li class="flex items-start gap-2.5 text-[13.5px] leading-relaxed text-foreground/85 sm:text-sm"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-neon-pink"></span><span>입장 후 1개월 내 벙 1회 참여 필수</span></li><li class="flex items-start gap-2.5 text-[13.5px] leading-relaxed text-foreground/85 sm:text-sm"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-neon-pink"></span><span>첫 벙 참여 시 음주 상태 참여는 불가해요</span></li></ul>
+    </div>
+    
+    <div class="neon-card neon-card-glow p-5 sm:p-6">
+      <div class="mb-4 flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-neon-purple/30 to-neon-pink/20 text-neon-blue ring-1 ring-neon-blue/30">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h3 class="text-base font-semibold text-foreground sm:text-lg">벙 참여 기본</h3>
+      </div>
+      <ul class="space-y-2.5"><li class="flex items-start gap-2.5 text-[13.5px] leading-relaxed text-foreground/85 sm:text-sm"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-neon-pink"></span><span>참석 확정 시 참석 버튼은 꼭 눌러주세요</span></li><li class="flex items-start gap-2.5 text-[13.5px] leading-relaxed text-foreground/85 sm:text-sm"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-neon-pink"></span><span>중간 참여는 벙주에게 먼저 연락해주세요</span></li></ul>
+    </div>
+    
+    <div class="neon-card neon-card-glow p-5 sm:p-6">
+      <div class="mb-4 flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-neon-purple/30 to-neon-pink/20 text-neon-purple ring-1 ring-neon-purple/30">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h3 class="text-base font-semibold text-foreground sm:text-lg">빠른 체크</h3>
+      </div>
+      <ul class="space-y-2.5"><li class="flex items-start gap-2.5 text-[13.5px] leading-relaxed text-foreground/85 sm:text-sm"><span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded border border-neon-purple/60 bg-neon-purple/10 text-[10px] text-neon-purple">✓</span><span>닉네임 설정 완료</span></li><li class="flex items-start gap-2.5 text-[13.5px] leading-relaxed text-foreground/85 sm:text-sm"><span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded border border-neon-purple/60 bg-neon-purple/10 text-[10px] text-neon-purple">✓</span><span>공지 확인 완료</span></li><li class="flex items-start gap-2.5 text-[13.5px] leading-relaxed text-foreground/85 sm:text-sm"><span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded border border-neon-purple/60 bg-neon-purple/10 text-[10px] text-neon-purple">✓</span><span>첫 벙 일정 확인하기</span></li></ul>
+    </div>
+    
+    </div>
+  </div>
+</section>
+
+
+<section class="px-5 py-16 sm:py-20">
+  <div class="mx-auto max-w-screen-md">
+    
+    <div class="mb-8">
+      <div class="mb-3 flex justify-start">
+        <span class="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-[11px] font-medium tracking-[0.18em] text-neon-purple uppercase">
+          <span class="h-1.5 w-1.5 rounded-full bg-neon-purple shadow-[0_0_8px_#b566ff]"></span>
+          Step 02
+        </span>
+      </div>
+      <h2 class="text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl md:text-4xl">이 모임은 이렇게 운영돼요</h2>
+      <p class="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">모두가 편하게 참여할 수 있도록 몇 가지 기본 원칙으로 운영되고 있어요.</p>
+    </div>
+    
+    <div class="flex flex-wrap gap-2.5"><span class="inline-flex items-center gap-2 rounded-full border bg-surface/60 px-4 py-2 text-[13px] font-medium backdrop-blur transition-transform hover:-translate-y-0.5 border-neon-purple/40 text-neon-purple shadow-[0_0_18px_-8px_currentColor]"><span class="h-1.5 w-1.5 rounded-full bg-current"></span>공식 벙 공유 원칙</span><span class="inline-flex items-center gap-2 rounded-full border bg-surface/60 px-4 py-2 text-[13px] font-medium backdrop-blur transition-transform hover:-translate-y-0.5 border-neon-pink/40 text-neon-pink shadow-[0_0_18px_-8px_currentColor]"><span class="h-1.5 w-1.5 rounded-full bg-current"></span>동시간대 중복 벙 제한</span><span class="inline-flex items-center gap-2 rounded-full border bg-surface/60 px-4 py-2 text-[13px] font-medium backdrop-blur transition-transform hover:-translate-y-0.5 border-neon-blue/40 text-neon-blue shadow-[0_0_18px_-8px_currentColor]"><span class="h-1.5 w-1.5 rounded-full bg-current"></span>투명하고 빠른 정산</span><span class="inline-flex items-center gap-2 rounded-full border bg-surface/60 px-4 py-2 text-[13px] font-medium backdrop-blur transition-transform hover:-translate-y-0.5 border-neon-pink/40 text-neon-pink shadow-[0_0_18px_-8px_currentColor]"><span class="h-1.5 w-1.5 rounded-full bg-current"></span>공개방 감정싸움 금지</span><span class="inline-flex items-center gap-2 rounded-full border bg-surface/60 px-4 py-2 text-[13px] font-medium backdrop-blur transition-transform hover:-translate-y-0.5 border-neon-purple/40 text-neon-purple shadow-[0_0_18px_-8px_currentColor]"><span class="h-1.5 w-1.5 rounded-full bg-current"></span>예외는 운영진 논의 후 판단</span></div>
+  </div>
+</section>
+
+
+<section class="px-5 py-16 sm:py-20">
+  <div class="mx-auto max-w-screen-md">
+    
+    <div class="mb-8">
+      <div class="mb-3 flex justify-start">
+        <span class="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-[11px] font-medium tracking-[0.18em] text-neon-purple uppercase">
+          <span class="h-1.5 w-1.5 rounded-full bg-neon-purple shadow-[0_0_8px_#b566ff]"></span>
+          Step 03
+        </span>
+      </div>
+      <h2 class="text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl md:text-4xl">벙 참여 가이드</h2>
+      <p class="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">벙 만들기부터 참여까지, 흐름대로 따라오세요.</p>
+    </div>
+    
+    <div class="relative">
+      <div class="absolute left-[19px] top-2 bottom-2 w-px bg-gradient-to-b from-neon-purple/60 via-neon-pink/40 to-transparent sm:left-[23px]"></div>
+      <div class="space-y-5">
+    <div class="relative pl-12 sm:pl-14">
+      <div class="absolute left-0 top-1 flex h-10 w-10 items-center justify-center rounded-full border border-neon-purple/50 bg-background text-xs font-bold text-neon-purple shadow-[0_0_20px_-6px_#b566ff] sm:h-12 sm:w-12 sm:text-sm">01</div>
+      <div class="neon-card neon-card-glow p-5 sm:p-6">
+        <h3 class="mb-2 text-base font-semibold text-foreground sm:text-lg">벙 만들기</h3>
+        <p class="text-[13.5px] leading-relaxed text-muted-foreground sm:text-sm">채팅 우측 상단 메뉴 → 캘린더 → 연필 아이콘 클릭 → 제목, 날짜, 시간, 위치, 참석 여부 입력 후 완료</p>
+        
+      </div>
+    </div>
+    
+    <div class="relative pl-12 sm:pl-14">
+      <div class="absolute left-0 top-1 flex h-10 w-10 items-center justify-center rounded-full border border-neon-purple/50 bg-background text-xs font-bold text-neon-purple shadow-[0_0_20px_-6px_#b566ff] sm:h-12 sm:w-12 sm:text-sm">02</div>
+      <div class="neon-card neon-card-glow p-5 sm:p-6">
+        <h3 class="mb-2 text-base font-semibold text-foreground sm:text-lg">중복 벙 개설 제한</h3>
+        <p class="text-[13.5px] leading-relaxed text-muted-foreground sm:text-sm">동시간대에 이미 벙이 있다면 중복 개설은 금지예요.</p>
+        <div class="mt-4 rounded-xl border border-border bg-surface/40 p-3.5"><div class="mb-2 text-[11px] font-semibold uppercase tracking-wider text-neon-pink">허용되는 경우</div><ul class="space-y-1.5"><li class="flex items-start gap-2 text-[13px] text-foreground/85"><span class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-neon-pink"></span><span>기존 벙의 정원이 마감된 경우</span></li><li class="flex items-start gap-2 text-[13px] text-foreground/85"><span class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-neon-pink"></span><span>기존 벙의 설정 마감 시간이 지난 경우</span></li><li class="flex items-start gap-2 text-[13px] text-foreground/85"><span class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-neon-pink"></span><span>기존 벙주가 사전 동의한 경우</span></li></ul></div>
+      </div>
+    </div>
+    
+    <div class="relative pl-12 sm:pl-14">
+      <div class="absolute left-0 top-1 flex h-10 w-10 items-center justify-center rounded-full border border-neon-purple/50 bg-background text-xs font-bold text-neon-purple shadow-[0_0_20px_-6px_#b566ff] sm:h-12 sm:w-12 sm:text-sm">03</div>
+      <div class="neon-card neon-card-glow p-5 sm:p-6">
+        <h3 class="mb-2 text-base font-semibold text-foreground sm:text-lg">참여 절차</h3>
+        <p class="text-[13.5px] leading-relaxed text-muted-foreground sm:text-sm">절차 없는 임의 참여는 좌석 배정과 정산에 혼선이 생길 수 있어요.</p>
+        <div class="mt-4 rounded-xl border border-border bg-surface/40 p-3.5"><div class="mb-2 text-[11px] font-semibold uppercase tracking-wider text-neon-pink">꼭 지켜주세요</div><ul class="space-y-1.5"><li class="flex items-start gap-2 text-[13px] text-foreground/85"><span class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-neon-pink"></span><span>참여 확정 시 참석 버튼 필수</span></li><li class="flex items-start gap-2 text-[13px] text-foreground/85"><span class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-neon-pink"></span><span>중간 참여는 벙주에게 사전 연락</span></li></ul></div>
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="px-5 py-16 sm:py-20">
+  <div class="mx-auto max-w-screen-md">
+    
+    <div class="mb-8">
+      <div class="mb-3 flex justify-start">
+        <span class="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-[11px] font-medium tracking-[0.18em] text-neon-purple uppercase">
+          <span class="h-1.5 w-1.5 rounded-full bg-neon-purple shadow-[0_0_8px_#b566ff]"></span>
+          Step 04
+        </span>
+      </div>
+      <h2 class="text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl md:text-4xl">공식 벙과 비공식 모임 기준</h2>
+      <p class="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">모임 내 오해와 분열을 줄이기 위해, 오프라인 만남은 공식 벙 공유를 원칙으로 해요.</p>
+    </div>
+    
+    <div class="space-y-4">
+      <div class="neon-card neon-card-glow p-5 sm:p-6">
+        <div class="mb-3 flex items-center gap-2.5">
+          <svg class="h-5 w-5 text-neon-purple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          <h3 class="text-base font-semibold sm:text-lg">기본 원칙</h3>
+        </div>
+        <p class="text-[13.5px] leading-relaxed text-foreground/85 sm:text-sm">모든 오프라인 모임은 <span class="font-semibold text-neon-purple">공식 벙 공유</span>가 원칙이에요. 현재 방 안에 있는 사람 <span class="font-semibold text-neon-pink">2명 이상</span>이 함께 만나면 벙 기준을 적용해요.</p>
+        <div class="mt-4 rounded-xl border border-border bg-surface/40 p-3.5">
+          <div class="mb-2 text-[11px] font-semibold uppercase tracking-wider text-neon-blue">예외로 인정되는 경우</div>
+          <ul class="space-y-1.5"><li class="flex items-start gap-2 text-[13px] text-foreground/85"><span class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-neon-blue"></span>가족·친척과의 만남</li><li class="flex items-start gap-2 text-[13px] text-foreground/85"><span class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-neon-blue"></span>오픈채팅방 외 인연과의 사적 모임</li><li class="flex items-start gap-2 text-[13px] text-foreground/85"><span class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-neon-blue"></span>오픈채팅방 내 공식 커플</li></ul>
+        </div>
+      </div>
+      <div class="rounded-2xl border border-warning/40 bg-warning/[0.06] p-5">
+        <div class="mb-2 flex items-center gap-2.5">
+          <svg class="h-5 w-5 text-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01"/></svg>
+          <h3 class="text-sm font-semibold text-warning">꼭 지켜주세요</h3>
+        </div>
+        <p class="text-[13.5px] leading-relaxed text-foreground/85">비공식 모임에 대한 <span class="font-semibold">언급, 사진 공유, 후일담</span>은 금지예요.</p>
+      </div>
+      <div class="neon-card neon-card-glow p-5 sm:p-6">
+        <h3 class="mb-4 text-sm font-semibold text-foreground">위반 시 절차</h3>
+        <div class="grid grid-cols-3 gap-2.5"><div class="rounded-xl border border-border bg-surface/60 p-3 text-center"><div class="mb-1.5 text-[11px] font-bold tracking-wider text-neon-blue">1차</div><div class="text-[13px] font-medium text-foreground/90">구두 경고</div></div><div class="rounded-xl border border-border bg-surface/60 p-3 text-center"><div class="mb-1.5 text-[11px] font-bold tracking-wider text-neon-purple">2차</div><div class="text-[13px] font-medium text-foreground/90">운영진 면담</div></div><div class="rounded-xl border border-border bg-surface/60 p-3 text-center"><div class="mb-1.5 text-[11px] font-bold tracking-wider text-destructive">3차</div><div class="text-[13px] font-medium text-foreground/90">강제퇴장</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="px-5 py-16 sm:py-20">
+  <div class="mx-auto max-w-screen-md">
+    
+    <div class="mb-8">
+      <div class="mb-3 flex justify-start">
+        <span class="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-[11px] font-medium tracking-[0.18em] text-neon-purple uppercase">
+          <span class="h-1.5 w-1.5 rounded-full bg-neon-purple shadow-[0_0_8px_#b566ff]"></span>
+          Step 05
+        </span>
+      </div>
+      <h2 class="text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl md:text-4xl">정산 안내</h2>
+      <p class="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">정산은 깔끔하고 빠르게 진행하는 것을 원칙으로 해요.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      
+    <div class="neon-card neon-card-glow p-5 sm:p-6">
+      <div class="mb-4 flex items-center gap-2.5">
+        <svg class="h-5 w-5 text-neon-purple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M22 12h-4a2 2 0 0 0 0 4h4"/></svg>
+        <h3 class="text-base font-semibold sm:text-lg">벙주가 할 일</h3>
+      </div>
+      <ul class="space-y-2.5"><li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded bg-neon-purple/15 text-[10px] font-bold text-neon-purple">1</span>기본 원칙은 1/N (예외는 벙주 판단)</li><li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded bg-neon-purple/15 text-[10px] font-bold text-neon-purple">2</span>영수증 또는 결제 내역 첨부 필수</li><li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded bg-neon-purple/15 text-[10px] font-bold text-neon-purple">3</span>날짜 / 참여자 / 금액 / 계좌 / 참석자 태그 명확히 공유</li><li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded bg-neon-purple/15 text-[10px] font-bold text-neon-purple">4</span>정산 내용을 벙 공지 댓글에 기재</li></ul>
+    </div>
+    
+      
+    <div class="neon-card neon-card-glow p-5 sm:p-6">
+      <div class="mb-4 flex items-center gap-2.5">
+        <svg class="h-5 w-5 text-neon-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <h3 class="text-base font-semibold sm:text-lg">참석자가 할 일</h3>
+      </div>
+      <ul class="space-y-2.5"><li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded bg-neon-pink/15 text-[10px] font-bold text-neon-pink">1</span>정산 내용 확인 후 빠르게 입금</li><li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded bg-neon-pink/15 text-[10px] font-bold text-neon-pink">2</span>금액·계좌 누락 시 벙주에게 즉시 문의</li><li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded bg-neon-pink/15 text-[10px] font-bold text-neon-pink">3</span>참석 변동 시 사전 공유</li></ul>
+    </div>
+    
+    </div>
+  </div>
+</section>
+
+
+<section class="px-5 py-16 sm:py-20">
+  <div class="mx-auto max-w-screen-md">
+    
+    <div class="mb-8">
+      <div class="mb-3 flex justify-start">
+        <span class="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-[11px] font-medium tracking-[0.18em] text-neon-purple uppercase">
+          <span class="h-1.5 w-1.5 rounded-full bg-neon-purple shadow-[0_0_8px_#b566ff]"></span>
+          Step 06
+        </span>
+      </div>
+      <h2 class="text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl md:text-4xl">활동 유지 규칙</h2>
+      <p class="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">유령회원 방지와 활발한 모임 유지를 위한 기준이에요.</p>
+    </div>
+    
+    <div class="space-y-3">
+    <div class="neon-card neon-card-glow p-4 sm:p-5">
+      <div class="flex items-center gap-4">
+        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-neon-blue/30 to-neon-purple/20 ring-1 ring-neon-blue/30">
+          <svg class="h-5 w-5 text-neon-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="flex-1">
+          <div class="mb-1 flex items-center gap-2">
+            <span class="rounded-md bg-neon-purple/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-neon-purple">신입</span>
+            <span class="text-[10px] font-medium text-muted-foreground">· 1개월</span>
+          </div>
+          <p class="text-[13.5px] leading-relaxed text-foreground/90 sm:text-sm">입장 후 1개월 내 벙 1회 참여 필요</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="neon-card neon-card-glow p-4 sm:p-5">
+      <div class="flex items-center gap-4">
+        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-neon-blue/30 to-neon-purple/20 ring-1 ring-neon-blue/30">
+          <svg class="h-5 w-5 text-neon-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="flex-1">
+          <div class="mb-1 flex items-center gap-2">
+            <span class="rounded-md bg-neon-purple/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-neon-purple">참여 1회 이후</span>
+            <span class="text-[10px] font-medium text-muted-foreground">· 권한</span>
+          </div>
+          <p class="text-[13.5px] leading-relaxed text-foreground/90 sm:text-sm">벙 생성 및 게스트 초대 가능</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="neon-card neon-card-glow p-4 sm:p-5">
+      <div class="flex items-center gap-4">
+        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-neon-blue/30 to-neon-purple/20 ring-1 ring-neon-blue/30">
+          <svg class="h-5 w-5 text-neon-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="flex-1">
+          <div class="mb-1 flex items-center gap-2">
+            <span class="rounded-md bg-neon-purple/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-neon-purple">기존 구성원</span>
+            <span class="text-[10px] font-medium text-muted-foreground">· 2개월</span>
+          </div>
+          <p class="text-[13.5px] leading-relaxed text-foreground/90 sm:text-sm">2개월 내 1회 이상 벙 참여 필요</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="px-5 py-16 sm:py-20">
+  <div class="mx-auto max-w-screen-md">
+    
+    <div class="mb-8">
+      <div class="mb-3 flex justify-start">
+        <span class="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-[11px] font-medium tracking-[0.18em] text-neon-purple uppercase">
+          <span class="h-1.5 w-1.5 rounded-full bg-neon-purple shadow-[0_0_8px_#b566ff]"></span>
+          Step 07
+        </span>
+      </div>
+      <h2 class="text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl md:text-4xl">꼭 지켜주세요</h2>
+      <p class="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">모두가 편한 공간을 위해 함께 지켜야 할 약속이에요.</p>
+    </div>
+    
+    <div class="space-y-4">
+      
+    <div class="neon-card neon-card-glow p-5 sm:p-6">
+      <div class="mb-3 flex items-center gap-2.5">
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-destructive/15 ring-1 ring-destructive/30">
+          <svg class="h-4 w-4 text-destructive" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+        </div>
+        <h3 class="text-base font-semibold sm:text-lg">채팅 에티켓</h3>
+      </div>
+      <ul class="space-y-2 pl-1"><li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-destructive"></span>감정싸움 및 비생산적 논쟁 금지</li><li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-destructive"></span>공개 채팅방에서 감정적 언쟁 금지</li><li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-destructive"></span>타인 비방 / 분열 조장 / 뒷담화 금지</li></ul>
+    </div>
+    
+    <div class="neon-card neon-card-glow p-5 sm:p-6">
+      <div class="mb-3 flex items-center gap-2.5">
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-destructive/15 ring-1 ring-destructive/30">
+          <svg class="h-4 w-4 text-destructive" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+        </div>
+        <h3 class="text-base font-semibold sm:text-lg">개인 존중</h3>
+      </div>
+      <ul class="space-y-2 pl-1"><li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-destructive"></span>과도한 플러팅 금지</li><li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-destructive"></span>무단 연락처 요구·교환 금지</li><li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-destructive"></span>타인 동의 없는 사진·개인정보 유포 금지</li><li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-destructive"></span>사전 합의 없는 반말 및 사생활 침해 금지</li><li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-destructive"></span>비매너 / 폭언 / 성희롱 금지</li></ul>
+    </div>
+    
+    <div class="neon-card neon-card-glow p-5 sm:p-6">
+      <div class="mb-3 flex items-center gap-2.5">
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-destructive/15 ring-1 ring-destructive/30">
+          <svg class="h-4 w-4 text-destructive" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+        </div>
+        <h3 class="text-base font-semibold sm:text-lg">운영 질서</h3>
+      </div>
+      <ul class="space-y-2 pl-1"><li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-destructive"></span>무단 노쇼 및 불참 금지</li><li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-destructive"></span>다른 방 홍보 및 초대 금지</li><li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-destructive"></span>기혼자 출입 금지</li></ul>
+    </div>
+    
+      <div class="flex items-start gap-3 rounded-2xl border border-neon-blue/40 bg-neon-blue/[0.06] p-5">
+        <svg class="mt-0.5 h-5 w-5 shrink-0 text-neon-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <p class="text-[13.5px] leading-relaxed text-foreground/90">문제가 있거나 부당한 일이 있다면 공개 채팅방이 아닌 <span class="font-semibold text-neon-blue">운영진에게 1:1</span>로 전달해주세요. 필요한 경우 운영진이 중재 또는 공지 조치를 진행해요.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="px-5 py-16 sm:py-20">
+  <div class="mx-auto max-w-screen-md">
+    
+    <div class="mb-8">
+      <div class="mb-3 flex justify-start">
+        <span class="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-[11px] font-medium tracking-[0.18em] text-neon-purple uppercase">
+          <span class="h-1.5 w-1.5 rounded-full bg-neon-purple shadow-[0_0_8px_#b566ff]"></span>
+          Step 08
+        </span>
+      </div>
+      <h2 class="text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl md:text-4xl">기타 운영 정책</h2>
+      <p class="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">자주 묻는 예외 케이스에 대한 안내예요.</p>
+    </div>
+    
+    <div class="space-y-4">
+      <div class="neon-card neon-card-glow p-5 sm:p-6">
+        <div class="mb-4 flex items-center gap-2.5">
+          <svg class="h-5 w-5 text-neon-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v5h5"/></svg>
+          <h3 class="text-base font-semibold sm:text-lg">재입장 제한</h3>
+        </div>
+        <div class="space-y-2.5">
+          <div class="flex items-center justify-between rounded-xl border border-border bg-surface/50 px-4 py-3">
+            <span class="text-[13px] text-foreground/85">1981년생 이상</span>
+            <span class="rounded-full bg-neon-blue/15 px-2.5 py-0.5 text-[11px] font-bold text-neon-blue">최대 1회</span>
+          </div>
+          <div class="flex items-center justify-between rounded-xl border border-border bg-surface/50 px-4 py-3">
+            <span class="text-[13px] text-foreground/85">1982년생 이하</span>
+            <span class="rounded-full bg-neon-purple/15 px-2.5 py-0.5 text-[11px] font-bold text-neon-purple">최대 3회</span>
+          </div>
+        </div>
+        <p class="mt-3 text-[12.5px] leading-relaxed text-muted-foreground">· 기기 교체 등 불가피한 사유는 사전 공유 시 예외 적용 가능해요.</p>
+      </div>
+      <div class="neon-card neon-card-glow p-5 sm:p-6">
+        <div class="mb-3 flex items-center gap-2.5">
+          <svg class="h-5 w-5 text-neon-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
+          <h3 class="text-base font-semibold sm:text-lg">메시지 삭제 금지</h3>
+        </div>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-neon-pink"></span>과도한 메시지 삭제는 대화 흐름을 끊고 분위기를 해칠 수 있어요</li>
+          <li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-neon-pink"></span>신규 인입률에도 부정적인 영향을 줄 수 있어요</li>
+          <li class="flex items-start gap-2.5 text-[13.5px] text-foreground/85"><span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-neon-pink"></span>꼭 필요한 경우 운영진에게 가리기 요청을 해주세요</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="relative overflow-hidden px-5 pt-20 pb-24">
+  <div class="grid-bg absolute inset-0 -z-10 opacity-70"></div>
+  <div class="divider-neon mx-auto mb-16 max-w-screen-md"></div>
+  <div class="mx-auto max-w-screen-md text-center">
+    <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-neon-pink/40 bg-neon-pink/[0.08] px-3 py-1.5 text-xs font-medium text-neon-pink">
+      <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      마지막 안내
+    </div>
+    <h2 class="text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl">함께 <span class="text-gradient-neon">편하게</span> 운영해요</h2>
+    <div class="mx-auto mt-6 max-w-md space-y-3 text-[14px] leading-relaxed text-muted-foreground sm:text-[15px]">
+      <p>이 모임은 모두가 즐겁게 참여할 수 있도록 함께 만들어가는 공간이에요.</p>
+      <p>룰에 없는 상황이나 엣지케이스는 운영진 논의를 통해 판단 후 조치할 수 있어요.</p>
+      <p>불편한 일이 생기면 <span class="font-semibold text-foreground">운영진에게 1:1</span>로 알려주세요.</p>
+      <p class="text-foreground/85">서로를 배려하는 마음으로 즐거운 모임을 이어가요.</p>
+    </div>
+    <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+      <a href="#top" class="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-neon-purple via-neon-pink to-neon-blue px-5 py-3 text-sm font-semibold text-background shadow-[0_10px_40px_-10px_rgba(181,102,255,0.7)] transition-transform hover:scale-[1.02]">
+        운영 안내 다시 보기
+        <svg class="h-4 w-4 transition-transform group-hover:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+      </a>
+      <a href="#onboarding" class="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-5 py-3 text-sm font-medium text-foreground/90 backdrop-blur transition-colors hover:border-neon-purple/50 hover:text-neon-purple">톡방으로 돌아가기</a>
+    </div>
+    <div class="mt-16 text-[11px] tracking-wider text-muted-foreground/60 uppercase">KakaoTalk Open Chat · Community Guide</div>
+  </div>
+</section>
+
+
+<script>
+  const bar = document.getElementById('scrollbar');
+  const onScroll = () => {
+    const h = document.documentElement;
+    const total = h.scrollHeight - h.clientHeight;
+    bar.style.width = (total > 0 ? (h.scrollTop / total) * 100 : 0) + '%';
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+</body>
+</html>
