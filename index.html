@@ -6396,7 +6396,7 @@ Oh my Blue Moon</div>
     const rs = hdLoadRunState();
     if(rs && hd.levels[rs.levelIdx]){
       hd.hasRun = true;
-      hd.mode='timer'; hd.levelIdx=rs.levelIdx; hd.currentPlayers=rs.currentPlayers; hd.rebuys=rs.rebuys||0; hd.running=rs.running;
+      hd.levelIdx=rs.levelIdx; hd.currentPlayers=rs.currentPlayers; hd.rebuys=rs.rebuys||0; hd.running=rs.running;
       hd.endAt=rs.endAt; hd.remainAtPause=rs.remainAtPause; hd.finished=!!rs.finished;
       hd.showPrizes = rs.showPrizes!=null ? !!rs.showPrizes : true;
       if(hd.playerMode && rs.playerList) hd.playerList = rs.playerList;
@@ -6404,9 +6404,9 @@ Oh my Blue Moon</div>
         const remain = (hd.endAt-Date.now())/1000;
         if(remain<=0){ hd.running=false; hd.remainAtPause=0; if(hd.levelIdx===hd.levels.length-1) hd.finished=true; }
       }
+      hd.mode='setup';
     }
     hdRender();
-    if(hd.mode==='timer' && hd.running) hdStartTick();
   }
 
   function hdRender(){ if(hd.mode==='setup') hdRenderSetup(); else hdRenderTimer(); }
