@@ -163,6 +163,7 @@
       <button onclick="showPage('holdemevent')" id="btn-holdemevent" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">미니홀덤대회</button>
       -->
       <button onclick="showPage('holdem')" id="btn-holdem" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">홀덤 타이머</button>
+      <button onclick="showPage('temp')" id="btn-temp" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">임시</button>
       <!-- 샷클락 버튼 숨김 (재사용 시 아래 주석 해제, 페이지·URL은 그대로 유지)
       <button onclick="showPage('shotclock')" id="btn-shotclock" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">샷클락</button>
       -->
@@ -5689,6 +5690,14 @@ Oh my Blue Moon</div>
 
 </div>
 
+<!-- 임시 페이지 -->
+<div id="page-temp" class="hidden">
+  <div class="mx-auto max-w-screen-md px-5 pb-16 pt-16 text-center">
+    <p class="text-lg font-semibold text-foreground/90">임시</p>
+    <p class="mt-3 text-sm text-muted-foreground">준비중입니다</p>
+  </div>
+</div>
+
 <div id="page-boardgame" class="hidden">
 
 <section class="relative overflow-hidden">
@@ -7499,7 +7508,7 @@ Oh my Blue Moon</div>
   }
 
   function showPage(page) {
-    ['slowsix', 'guide', 'test1', 'fortune', 'roulette', 'spin', 'beta', 'boardgame', 'holdem', 'holdemevent', 'attendance', 'schedule', 'shotclock', 'apply'].forEach(p => {
+    ['slowsix', 'guide', 'test1', 'fortune', 'roulette', 'spin', 'beta', 'boardgame', 'holdem', 'holdemevent', 'attendance', 'schedule', 'shotclock', 'apply', 'temp'].forEach(p => {
       document.getElementById('page-' + p).classList.toggle('hidden', p !== page);
       const btn = document.getElementById('btn-' + p);
       if (btn) btn.className = p === page
@@ -7581,6 +7590,7 @@ Oh my Blue Moon</div>
     else if (hash === 'schedule') { showPage('schedule'); }
     else if (hash === 'shotclock') { showPage('shotclock'); }
     else if (hash === 'apply') { showPage('apply'); }
+    else if (hash === 'temp') { showPage('temp'); }
   })();
 </script>
 
