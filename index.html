@@ -144,7 +144,7 @@
   <div class="mx-auto max-w-screen-md px-3 sm:px-5">
     <!-- 모바일: 2줄 / 데스크탑: 1줄 -->
     <div class="flex flex-wrap gap-1.5 py-2 sm:flex-nowrap sm:py-2.5">
-      <button onclick="showPage('slowsix')" id="btn-slowsix" class="rounded-full bg-gradient-to-r from-neon-purple via-neon-pink to-neon-blue px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-semibold text-background transition-all whitespace-nowrap flex-shrink-0">슬로우식스ON 안내</button>
+      <button onclick="showPage('slowsix')" id="btn-slowsix" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">슬로우식스ON 안내</button>
       <button onclick="showPage('slowsixd')" id="btn-slowsixd" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">슬로우식스D 안내</button>
       <button onclick="showPage('slowsixp')" id="btn-slowsixp" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">슬로우식스P 안내</button>
       <!-- 필독 버튼 숨김 (재사용 시 아래 주석 해제)
@@ -209,7 +209,10 @@
 })();
 </script>
 
-<div id="page-slowsix">
+<div id="page-main">
+</div>
+
+<div id="page-slowsix" class="hidden">
 
 <!-- HERO -->
 <section class="relative overflow-hidden">
@@ -8122,14 +8125,14 @@ Oh my Blue Moon</div>
   }
 
   function showPage(page) {
-    ['slowsix', 'slowsixd', 'slowsixp', 'guide', 'test1', 'fortune', 'roulette', 'spin', 'beta', 'boardgame-select', 'boardgame', 'holdem', 'holdemevent', 'attendance', 'schedule', 'shotclock', 'apply', 'temp'].forEach(p => {
+    ['main', 'slowsix', 'slowsixd', 'slowsixp', 'guide', 'test1', 'fortune', 'roulette', 'spin', 'beta', 'boardgame-select', 'boardgame', 'holdem', 'holdemevent', 'attendance', 'schedule', 'shotclock', 'apply', 'temp'].forEach(p => {
       document.getElementById('page-' + p).classList.toggle('hidden', p !== page);
       const btn = document.getElementById('btn-' + p);
       if (btn) btn.className = p === page
         ? 'rounded-full bg-gradient-to-r from-neon-purple via-neon-pink to-neon-blue px-4 py-1.5 text-[12px] sm:text-[13px] tracking-[-0.7px] sm:tracking-normal font-semibold text-background transition-all whitespace-nowrap flex-shrink-0'
         : 'rounded-full border border-border px-4 py-1.5 text-[12px] sm:text-[13px] tracking-[-0.7px] sm:tracking-normal font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0';
     });
-    const hash = page === 'slowsix' ? '' : page === 'test1' ? '#calculator' : page === 'fortune' ? '#event' : page === 'roulette' ? '#tamagotchi' : page === 'spin' ? '#spin' : page === 'travel' ? '#travel' : page === 'pinball' ? '#pinball' : page === 'holdem' ? '#holdem' : page === 'holdemevent' ? '#holdemevent' : page === 'attendance' ? '#attendance' : page === 'schedule' ? '#schedule' : page === 'shotclock' ? '#shotclock' : page === 'apply' ? '#apply' : '#' + page;
+    const hash = page === 'main' ? '' : page === 'slowsix' ? '#slowsixon' : page === 'test1' ? '#calculator' : page === 'fortune' ? '#event' : page === 'roulette' ? '#tamagotchi' : page === 'spin' ? '#spin' : page === 'travel' ? '#travel' : page === 'pinball' ? '#pinball' : page === 'holdem' ? '#holdem' : page === 'holdemevent' ? '#holdemevent' : page === 'attendance' ? '#attendance' : page === 'schedule' ? '#schedule' : page === 'shotclock' ? '#shotclock' : page === 'apply' ? '#apply' : '#' + page;
     history.replaceState(null, '', location.pathname + hash);
     window.scrollTo(0, 0);
     if (page === 'roulette') {
@@ -8196,6 +8199,7 @@ Oh my Blue Moon</div>
     else if (hash === 'diet') showPage('diet');
     else if (hash === 'spin') showPage('spin');
     else if (hash === 'beta') showPage('beta');
+    else if (hash === 'slowsixon') showPage('slowsix');
     else if (hash === 'slowsixd') showPage('slowsixd');
     else if (hash === 'slowsixp') showPage('slowsixp');
     else if (hash === 'boardgame') showPage('boardgame');
