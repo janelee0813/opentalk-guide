@@ -114,12 +114,6 @@
   <div id="scrollbar" class="h-full w-0 bg-gradient-to-r from-neon-purple via-neon-pink to-neon-blue shadow-[0_0_10px_#b566ff] transition-[width] duration-150"></div>
 </div>
 
-<!-- 방문자수/접속자수 카운터 숨김 (재사용 시 아래 주석 해제)
-<style>
-  @media (max-width: 640px), (max-height: 500px){
-    #visitor-badge{ display: none !important; }
-  }
-</style>
 <div id="visitor-badge" class="fixed top-2 right-3 z-50 flex items-center gap-1.5 rounded-full border border-neon-purple/20 bg-surface/80 px-2.5 py-1 backdrop-blur-sm">
   <svg class="h-2.5 w-2.5 text-neon-purple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
   <span class="text-[9px] text-muted-foreground">방문자수</span>
@@ -128,9 +122,6 @@
   <span style="width:5px;height:5px;border-radius:50%;background:#5ee0a8;box-shadow:0 0 5px #5ee0a8;animation:onlinePulse 2s ease-in-out infinite;flex-shrink:0"></span>
   <span id="online-num" style="font-size:9px;font-weight:600;color:#5ee0a8">-</span>
 </div>
--->
-<div id="visit-count" style="display:none"></div>
-<div id="online-num" style="display:none"></div>
 
 <!-- Navigation -->
 <style>
@@ -142,49 +133,48 @@
 </style>
 <nav class="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur-sm">
   <div class="mx-auto max-w-screen-md px-3 sm:px-5">
-    <!-- 모바일: 2줄 / 데스크탑: 1줄 -->
-    <div class="flex flex-wrap gap-1.5 py-2 sm:flex-nowrap sm:py-2.5">
-      <button onclick="showPage('slowsix')" id="btn-slowsix" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">슬로우식스ON 안내</button>
-      <button onclick="showPage('slowsixd')" id="btn-slowsixd" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">슬로우식스D 안내</button>
-      <button onclick="showPage('slowsixp')" id="btn-slowsixp" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">슬로우식스P 안내</button>
+    <!-- 모바일: 한 줄당 3개씩 그리드 / 데스크탑: 1줄 -->
+    <div class="grid grid-cols-3 items-start gap-1.5 py-2 sm:flex sm:flex-nowrap sm:py-2.5">
+      <button onclick="showPage('slowsix')" id="btn-slowsix" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple text-center sm:whitespace-nowrap sm:flex-shrink-0">슬로우식스ON 안내</button>
+      <button onclick="showPage('slowsixd')" id="btn-slowsixd" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple text-center sm:whitespace-nowrap sm:flex-shrink-0">슬로우식스D 안내</button>
+      <button onclick="showPage('slowsixp')" id="btn-slowsixp" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple text-center sm:whitespace-nowrap sm:flex-shrink-0">슬로우식스P 안내</button>
       <!-- 필독 버튼 숨김 (재사용 시 아래 주석 해제)
-      <button onclick="showPage('guide')" id="btn-guide" class="rounded-full bg-gradient-to-r from-neon-purple via-neon-pink to-neon-blue px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-semibold text-background transition-all whitespace-nowrap flex-shrink-0">필독</button>
+      <button onclick="showPage('guide')" id="btn-guide" class="rounded-full bg-gradient-to-r from-neon-purple via-neon-pink to-neon-blue px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-semibold text-background transition-all text-center sm:whitespace-nowrap sm:flex-shrink-0">필독</button>
       -->
-      <button onclick="showPage('fortune')" id="btn-fortune" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">1시간 무료연장 이벤트</button>
-      <div class="w-full sm:hidden"></div>
+      <button onclick="showPage('fortune')" id="btn-fortune" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple text-center sm:whitespace-nowrap sm:flex-shrink-0">1시간 무료연장 이벤트</button>
       <!-- 다마고찌 버튼 숨김 (재사용 시 아래 주석 해제)
-      <button onclick="showPage('roulette')" id="btn-roulette" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">다마고찌</button>
+      <button onclick="showPage('roulette')" id="btn-roulette" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple text-center sm:whitespace-nowrap sm:flex-shrink-0">다마고찌</button>
       -->
       <!-- 운동 버튼 숨김 (재사용 시 아래 주석 해제)
-      <button onclick="showPage('diet')" id="btn-diet" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">운동</button>
+      <button onclick="showPage('diet')" id="btn-diet" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple text-center sm:whitespace-nowrap sm:flex-shrink-0">운동</button>
       -->
 
-      <button onclick="showPage('beta')" id="btn-beta" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">공지사항</button>
-      <button onclick="showPage('boardgame-select')" id="btn-boardgame-select" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">보드게임 목록</button>
+      <button onclick="showPage('beta')" id="btn-beta" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple text-center sm:whitespace-nowrap sm:flex-shrink-0">공지사항</button>
+      <button onclick="showPage('boardgame-select')" id="btn-boardgame-select" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple text-center sm:whitespace-nowrap sm:flex-shrink-0">보드게임 목록</button>
       <!-- 미니홀덤대회 버튼 숨김 (재사용 시 아래 주석 해제, 페이지·URL은 그대로 유지)
-      <button onclick="showPage('holdemevent')" id="btn-holdemevent" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">미니홀덤대회</button>
+      <button onclick="showPage('holdemevent')" id="btn-holdemevent" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple text-center sm:whitespace-nowrap sm:flex-shrink-0">미니홀덤대회</button>
       -->
-      <button onclick="showPage('holdem')" id="btn-holdem" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">홀덤 타이머</button>
+      <button onclick="showPage('holdem')" id="btn-holdem" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple text-center sm:whitespace-nowrap sm:flex-shrink-0">홀덤 타이머</button>
       <!-- 임시 버튼 숨김 (재사용 시 아래 주석 해제, 페이지·URL은 그대로 유지)
-      <button onclick="showPage('temp')" id="btn-temp" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">임시</button>
+      <button onclick="showPage('temp')" id="btn-temp" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple text-center sm:whitespace-nowrap sm:flex-shrink-0">임시</button>
       -->
       <!-- 샷클락 버튼 숨김 (재사용 시 아래 주석 해제, 페이지·URL은 그대로 유지)
-      <button onclick="showPage('shotclock')" id="btn-shotclock" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">샷클락</button>
+      <button onclick="showPage('shotclock')" id="btn-shotclock" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple text-center sm:whitespace-nowrap sm:flex-shrink-0">샷클락</button>
       -->
       <!-- 참여신청 버튼 숨김 (재사용 시 아래 주석 해제, 페이지·URL은 그대로 유지)
-      <button onclick="showPage('apply')" id="btn-apply" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">참여신청</button>
+      <button onclick="showPage('apply')" id="btn-apply" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple text-center sm:whitespace-nowrap sm:flex-shrink-0">참여신청</button>
       -->
       <!-- 정산 계산기 버튼 숨김 (재사용 시 아래 주석 해제, 페이지·URL은 그대로 유지)
-      <button onclick="showPage('test1')" id="btn-test1" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">정산 계산기</button>
+      <button onclick="showPage('test1')" id="btn-test1" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple text-center sm:whitespace-nowrap sm:flex-shrink-0">정산 계산기</button>
       -->
       <!-- 임시-출석이벤트 버튼 숨김 (재사용 시 아래 주석 해제, 페이지·URL은 그대로 유지)
-      <button onclick="showPage('attendance')" id="btn-attendance" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">임시-출석이벤트</button>
+      <button onclick="showPage('attendance')" id="btn-attendance" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple text-center sm:whitespace-nowrap sm:flex-shrink-0">임시-출석이벤트</button>
       -->
       <!-- 임시-스케줄 버튼 숨김 (재사용 시 아래 주석 해제, 페이지·URL은 그대로 유지)
-      <button onclick="showPage('schedule')" id="btn-schedule" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">임시-스케줄</button>
+      <button onclick="showPage('schedule')" id="btn-schedule" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple text-center sm:whitespace-nowrap sm:flex-shrink-0">임시-스케줄</button>
       -->
       <!-- 여행 버튼 숨김 (재사용 시 아래 주석 해제)
-      <button onclick="showPage('travel')" id="btn-travel" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">여행</button>
+      <button onclick="showPage('travel')" id="btn-travel" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple text-center sm:whitespace-nowrap sm:flex-shrink-0">여행</button>
       -->
 
     </div>
@@ -8347,8 +8337,8 @@ Oh my Blue Moon</div>
       document.getElementById('page-' + p).classList.toggle('hidden', p !== page);
       const btn = document.getElementById('btn-' + p);
       if (btn) btn.className = p === page
-        ? 'rounded-full bg-gradient-to-r from-neon-purple via-neon-pink to-neon-blue px-4 py-1.5 text-[12px] sm:text-[13px] tracking-[-0.7px] sm:tracking-normal font-semibold text-background transition-all whitespace-nowrap flex-shrink-0'
-        : 'rounded-full border border-border px-4 py-1.5 text-[12px] sm:text-[13px] tracking-[-0.7px] sm:tracking-normal font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0';
+        ? 'rounded-full bg-gradient-to-r from-neon-purple via-neon-pink to-neon-blue px-4 py-1.5 text-[12px] sm:text-[13px] tracking-[-0.7px] sm:tracking-normal font-semibold text-background transition-all text-center sm:whitespace-nowrap sm:flex-shrink-0'
+        : 'rounded-full border border-border px-4 py-1.5 text-[12px] sm:text-[13px] tracking-[-0.7px] sm:tracking-normal font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple text-center sm:whitespace-nowrap sm:flex-shrink-0';
     });
     const hash = page === 'main' ? '' : page === 'slowsix' ? '#slowsixon' : page === 'test1' ? '#calculator' : page === 'fortune' ? '#event' : page === 'roulette' ? '#tamagotchi' : page === 'spin' ? '#spin' : page === 'travel' ? '#travel' : page === 'pinball' ? '#pinball' : page === 'holdem' ? '#holdem' : page === 'holdemevent' ? '#holdemevent' : page === 'attendance' ? '#attendance' : page === 'schedule' ? '#schedule' : page === 'shotclock' ? '#shotclock' : page === 'apply' ? '#apply' : '#' + page;
     history.replaceState(null, '', location.pathname + hash);
