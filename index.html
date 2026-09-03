@@ -145,6 +145,7 @@
     <!-- 모바일: 2줄 / 데스크탑: 1줄 -->
     <div class="flex flex-wrap gap-1.5 py-2 sm:flex-nowrap sm:py-2.5">
       <button onclick="showPage('slowsix')" id="btn-slowsix" class="rounded-full bg-gradient-to-r from-neon-purple via-neon-pink to-neon-blue px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-semibold text-background transition-all whitespace-nowrap flex-shrink-0">슬로우식스온 안내</button>
+      <button onclick="showPage('slowsixd')" id="btn-slowsixd" class="rounded-full border border-border px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-medium text-muted-foreground transition-all hover:border-neon-purple/50 hover:text-neon-purple whitespace-nowrap flex-shrink-0">슬로우식스D 안내</button>
       <!-- 필독 버튼 숨김 (재사용 시 아래 주석 해제)
       <button onclick="showPage('guide')" id="btn-guide" class="rounded-full bg-gradient-to-r from-neon-purple via-neon-pink to-neon-blue px-3.5 py-1.5 text-[12.5px] sm:text-[13px] font-semibold text-background transition-all whitespace-nowrap flex-shrink-0">필독</button>
       -->
@@ -473,6 +474,30 @@
   window.ssCalcFee = ssCalcFee;
 })();
 </script>
+
+<div id="page-slowsixd" class="hidden">
+
+<section class="relative overflow-hidden">
+  <div class="grid-bg absolute inset-0 -z-10"></div>
+  <div class="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-neon-purple/60 to-transparent"></div>
+  <div class="mx-auto max-w-screen-md px-5 pt-11 pb-16 sm:pt-16 sm:pb-24">
+    <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface/70 px-3 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur animate-fade-up">
+      <svg class="h-3.5 w-3.5 text-neon-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+      <span>공간 이용 안내</span>
+      <span class="mx-1 h-1 w-1 rounded-full bg-border"></span>
+      <span class="text-neon-blue">슬로우식스D</span>
+    </div>
+    <h1 class="text-[34px] font-bold leading-[1.15] tracking-tight sm:text-5xl md:text-6xl animate-fade-up" style="animation-delay:60ms">
+      슬로우식스D<br/>
+      <span class="text-gradient-neon">공간 사용 가이드</span>
+    </h1>
+    <p class="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg animate-fade-up" style="animation-delay:140ms">
+      안내 내용을 준비 중이에요. 조금만 기다려주세요.
+    </p>
+  </div>
+</section>
+
+</div>
 
 <div id="page-guide" class="hidden">
 
@@ -7830,7 +7855,7 @@ Oh my Blue Moon</div>
   }
 
   function showPage(page) {
-    ['slowsix', 'guide', 'test1', 'fortune', 'roulette', 'spin', 'beta', 'boardgame-select', 'boardgame', 'holdem', 'holdemevent', 'attendance', 'schedule', 'shotclock', 'apply', 'temp'].forEach(p => {
+    ['slowsix', 'slowsixd', 'guide', 'test1', 'fortune', 'roulette', 'spin', 'beta', 'boardgame-select', 'boardgame', 'holdem', 'holdemevent', 'attendance', 'schedule', 'shotclock', 'apply', 'temp'].forEach(p => {
       document.getElementById('page-' + p).classList.toggle('hidden', p !== page);
       const btn = document.getElementById('btn-' + p);
       if (btn) btn.className = p === page
@@ -7904,6 +7929,7 @@ Oh my Blue Moon</div>
     else if (hash === 'diet') showPage('diet');
     else if (hash === 'spin') showPage('spin');
     else if (hash === 'beta') showPage('beta');
+    else if (hash === 'slowsixd') showPage('slowsixd');
     else if (hash === 'boardgame') showPage('boardgame');
     else if (hash === 'boardgame-select') showPage('boardgame-select');
     else if (hash === 'travel') { showPage('travel'); }
